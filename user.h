@@ -23,8 +23,8 @@ struct user *new_user ( char username[],
                         char account_status[]
                     );
 
-void printf_user (struct user u);
+void printf_user (struct user);
 
-void free_user (struct user *user);
+void free_user (struct user *);
 
 #endif
