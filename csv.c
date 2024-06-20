@@ -95,7 +95,7 @@ int tokenize_csv_line (struct buffer_csv *buffer)
                     buffer->line_token[i] = "\0";
                     // to-do: error-handling
                     // error flags on columns that not respected the format
-                    // otherwise the entity will be formed with empty fields
+                    // otherwise the entity will be formed with empty fields 
             }
             // to-do: error handling
 
