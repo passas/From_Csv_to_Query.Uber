@@ -12,13 +12,13 @@ typedef struct array
 
 Array *new_array (int capacity);
 
-void add_array (Array *a, void *data);
+void add_array (Array *, void *data);
 
-void *get_array (Array a, int pos);
+void *get_array (Array, int pos);
 
-int length_array (Array a);
+int length_array (Array);
 
-void free_array (Array *a);
+void free_array (Array *);
 
 
 #endif
