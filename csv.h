@@ -5,6 +5,7 @@
 #ifndef _CSV_H_
 #define _CSV_H_
 
+
 struct buffer_csv
 {
     char from_file[75];
