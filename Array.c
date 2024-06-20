@@ -76,7 +76,7 @@ void free_array (Array *a)
     {
         // Array storage
         free (a->data);
-        // Array structure
+        // Array
         free ( a );
     }
 }
