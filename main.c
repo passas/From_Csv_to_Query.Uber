@@ -33,7 +33,7 @@ main ()
             u = get_user (*users_catalog, i);
         
             // Print user
-            printf_user ( *u );
+            printf_csv_user ( *u );
             
             // Free user
             free_user ( u );
