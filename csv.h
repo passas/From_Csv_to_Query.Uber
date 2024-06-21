@@ -22,6 +22,7 @@ struct buffer_csv
     
     // Suit
     char **line_token;
+    int *flag_invalid_token;
 };
 
 

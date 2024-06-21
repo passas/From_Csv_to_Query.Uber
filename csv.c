@@ -24,14 +24,11 @@ struct buffer_csv *new_buffer_csv (char filename[], int columns, char *regex[], 
         // filename
         strcpy (buffer->from_file, filename);
         
-        // total columns
-        buffer->total_columns = columns;
-
         // column delim
         strcpy (buffer->delim, delim);
-        
-        // tokens -per se-
-        buffer->line_token = (char **) calloc (columns, sizeof (char *));
+
+        // total columns
+        buffer->total_columns = columns;
 
         // regex
         buffer->token_regex = (regex_t *) calloc (columns, sizeof (regex_t));
@@ -42,6 +39,12 @@ struct buffer_csv *new_buffer_csv (char filename[], int columns, char *regex[], 
             {}
             // to-do: error handling
         }
+
+        // tokens -per se-
+        buffer->line_token = (char **) calloc (columns, sizeof (char *));
+
+        // flag invalid tokens
+        buffer->flag_invalid_token = (int *) calloc (columns, sizeof (int));
     }
     // to-do: error handling
 
@@ -90,12 +93,17 @@ int tokenize_csv_line (struct buffer_csv *buffer)
             {
                 // Check column format
                 if ( ! regexec (buffer->token_regex+i, token, 0, NULL, 0) )
+                {
                     buffer->line_token[i] = token;
+                    buffer->flag_invalid_token[i] = 0;
+                }
                 else
+                {
+                    // Empty token
                     buffer->line_token[i] = "\0";
-                    // to-do: error-handling
-                    // error flags on columns that not respected the format
-                    // otherwise the entity will be formed with empty fields 
+                    // Raise flag
+                    buffer->flag_invalid_token[i] = 1;
+                }
             }
             // to-do: error handling
 
