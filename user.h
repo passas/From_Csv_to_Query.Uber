@@ -25,6 +25,8 @@ struct user *new_user ( char username[],
 
 void printf_user (struct user);
 
+void printf_csv_user (struct user);
+
 void free_user (struct user *);
 
 #endif

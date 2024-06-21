@@ -52,6 +52,18 @@ void printf_user (struct user u)
     );
 }
 
+void printf_csv_user (struct user u)
+{
+    printf ("%s;%s;%s;%s;%s;%s;%s\n", u.username,
+                                        u.name,
+                                        u.gender,
+                                        u.birth_date,
+                                        u.account_creation,
+                                        u.pay_method,
+                                        u.account_status
+    );
+}
+
 void free_user (struct user *user)
 {
     if ( user )
