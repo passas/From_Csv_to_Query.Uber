@@ -60,20 +60,31 @@ void load_users_catalog (Array *users)
         }
         else
         {
+            int flag; //invalid token flag
             struct user *user;
 
-            // Create user
-            user = new_user ( buffer->line_token[0], //char[]
-                            buffer->line_token[1], //char[]
-                            buffer->line_token[2], //char[]
-                            buffer->line_token[3], //char[]
-                            buffer->line_token[4], //char[]
-                            buffer->line_token[5], //char[]
-                            buffer->line_token[6]  //char[]
-                        );
+            // Test all fields
+            flag = 0;
+            for (int i=0 ; (i<total_tokens && !flag) ; i++)
+                // By-pass the condition where the array of flags are testen of being raised
+                    flag = buffer->flag_invalid_token[i];
 
-            // Collect user
-            add_array (users, (void *)user);
+            // All the working fields are valid
+            if ( !flag )
+            {
+                // Create user
+                user = new_user ( buffer->line_token[0], //char[]
+                                buffer->line_token[1], //char[]
+                                buffer->line_token[2], //char[]
+                                buffer->line_token[3], //char[]
+                                buffer->line_token[4], //char[]
+                                buffer->line_token[5], //char[]
+                                buffer->line_token[6]  //char[]
+                            );
+    
+                // Collect user
+                add_array (users, (void *)user);
+            }
         }
 
     } end_buffer_csv ( buffer );
