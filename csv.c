@@ -138,6 +138,9 @@ void free_buffer_csv (struct buffer_csv *buffer)
         // Regex array
         free (buffer->token_regex);
 
+        // Column flags
+        free ( buffer->flag_invalid_token );
+
         // Buffer
         free ( buffer );
     }
